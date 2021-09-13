@@ -24,5 +24,9 @@ git log
 #Sincronizar los cambios hechos en la nube con respecto a la local
 git pull
 
+#Agregar un archivo al repositorio
+git add nombreArchivo.txt
+git commit -m ""
+git push -u origin main
 
 
