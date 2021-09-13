@@ -29,4 +29,10 @@ git add nombreArchivo.txt
 git commit -m ""
 git push -u origin main
 
+#Crear un nuevo Branch o rama Nota: No pueden haber cambios pendientes
+git branch feature/login
+#Pasar a trabajar a la rama creada
+git checkout feature/login
+
+
 
