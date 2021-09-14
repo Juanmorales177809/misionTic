@@ -1,3 +1,5 @@
 Hola, Bienvenidos al grupo 25
 #Cada colaborador agregar una linea con su nombre y rol dentro de la organización 
 Juan Carlos Morales Guerra 
+
+Sebastian Camilo Cogario Ramos - Desarrollador
