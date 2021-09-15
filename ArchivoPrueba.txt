@@ -7,3 +7,5 @@ Sebastian Camilo Cogario Ramos - Desarrollador
 David Andres Baron Espitia - Analista
 
 Juan Jose Basante Navarro - Product Owner 
+
+Jessica Astrid Mayorga Barrera - Srum Master
