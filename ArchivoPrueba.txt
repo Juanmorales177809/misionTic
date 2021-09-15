@@ -3,3 +3,9 @@ Hola, Bienvenidos al grupo 25
 Juan Carlos Morales Guerra - Administrador de BD 
 
 Sebastian Camilo Cogario Ramos - Desarrollador
+
+David Andres Baron Espitia - Analista
+
+Juan Jose Basante Navarro - Product Owner 
+
+Jessica Astrid Mayorga Barrera - Srum Master
