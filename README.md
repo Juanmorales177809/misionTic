@@ -1,10 +1,16 @@
 # misionTic
 Ciclo 3
+
+
 Por: 
     Juan José Basante Navarro ;      email:	juanoser1997@gmail.com
+    
     David Andrés Barón Espitia ;     email:	dabaron776@gmail.com
+    
     Sebastián Camilo Cogario Ramos ;	email:  cogario0901@gmail.com
+    
     Jessica Astrid Mayorga Barrera ; email:	jessicamayorgab@gmail.com
+    
     Juan Carlos Morales Guerra ;     email:	mutaharmorales@gmail.com
 
     
