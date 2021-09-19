@@ -1,9 +1,7 @@
 # misionTic
 Ciclo 3
 
-
-Por: 
-    
+   
     Juan José Basante Navarro ;      email:	juanoser1997@gmail.com
     
     David Andrés Barón Espitia ;     email:	dabaron776@gmail.com
@@ -14,8 +12,8 @@ Por:
     
     Juan Carlos Morales Guerra ;     email:	mutaharmorales@gmail.com
 
-    
-Sprint1
+
+Proyecto
 
 Para el desarrollo de la aplicación web, tiene que contar con los siguientes modulos:
 
