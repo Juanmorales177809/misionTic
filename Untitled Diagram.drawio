@@ -1,1 +1,30 @@
-<mxfile host="app.diagrams.net" modified="2021-09-21T20:37:30.370Z" agent="5.0 (Windows)" version="15.2.9" etag="t_KG-pbghQYSCwrMhqeD" type="github"><diagram id="KZvfwnb2ddigUZDAxZo4">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-09-23T14:53:58.231Z" agent="5.0 (Windows)" etag="1nt5xT2QPPpqLl1Grtil" version="15.2.9" type="github">
+  <diagram id="KZvfwnb2ddigUZDAxZo4" name="Page-1">
+    <mxGraphModel dx="677" dy="371" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-1" value="Gestion Ventas" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="120" width="140" height="130" as="geometry">
+            <mxRectangle x="170" y="130" width="100" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-2" value="IdVenta: int&#xa;valorTotalVenta: float&#xa;Descripción: String&#xa;fechaInicial: date&#xa;fechaFactura: date&#xa;Responsable: String&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="j8wWy6M4ZJHC0zi5Tpc6-1">
+          <mxGeometry y="26" width="140" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-5" value="Gestion Vendedores" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="120" width="140" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-6" value="Id: int&#xa;Nombre: String&#xa;Especialidad: String&#xa;Telefono: String&#xa;FechaIngreso: Date&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="j8wWy6M4ZJHC0zi5Tpc6-5">
+          <mxGeometry y="26" width="140" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-9" value="Gestion de usuarios" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="310" y="300" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="j8wWy6M4ZJHC0zi5Tpc6-10" value="Rol : String&#xa;Nombre: String&#xa;Id: int&#xa;Telefono: String&#xa;Fecha de ingreso: Date&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="j8wWy6M4ZJHC0zi5Tpc6-9">
+          <mxGeometry y="26" width="140" height="84" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
