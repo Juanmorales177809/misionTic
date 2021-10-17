@@ -1,31 +1,25 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import './NavbarStyles.css'
+
 
 function NavbarComponents() {
 
-    return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <Link to ="/"class="navbar-brand" href="#">Equipo 25</Link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <Link to ="login" class="nav-link active" aria-current="page" href="#">Login</Link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Gestión usuarios</a>
-        </li>
-        <li class="nav-item">
-          <Link to ="/regservice"class="nav-link" href="#">Gestión Servicios</Link>
-        </li>
-        
-      </ul>
+  return (
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      <Link to = "/"class="navbar-brand text1" >Equipo 25</Link>
+      <span class="navbar-text">
+        <Link to="/regservice" href="#" class="text">Registro de Servicios</Link>
+        <Link to ="/login"><button to = "/login" class="but">JM</button></Link>
+      </span>
+
     </div>
-  </div>
-</nav>
-    )
+    <hr class="linea"/>
+  </nav>
+     
+    
+  )
 }
 export default NavbarComponents;

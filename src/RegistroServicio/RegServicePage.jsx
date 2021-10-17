@@ -7,9 +7,18 @@ import './RegStyles.css'
 function RegServicePage() {
 
     return (
+        
         <Fragment>
+         <hr class = "linea"></hr>
 
-            <h1 className="login-title">Salute Monde</h1>
+         <h2 class = "texto">GESTIÓN DE SERVICIOS</h2>
+
+<a class = "texto0">SERVICIOS</a>
+<button type="button" class="btn btn-dark but" > + Registrar
+</button>
+
+
+            
         </Fragment>
     )
 }

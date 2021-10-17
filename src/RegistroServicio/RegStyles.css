@@ -1,0 +1,38 @@
+.linea {
+    margin: 0%;
+}
+.linea2{
+    width: 80%; margin-left: 10%;border: 10px lightgray;border-radius: 10px;
+}
+.texto{
+    font-size: x-large; 
+    font-weight: bold; 
+    margin-top: 5%; 
+    margin-left: 10px;
+
+}
+.texto0{
+    color:lightgrey;font-family: Tahoma;text-decoration:none;margin-left: 87%;
+}
+.texto2{
+font-size: large; 
+font-weight: bold; 
+margin-top: 100px; 
+margin-left: 10%;
+}
+.buto {
+    width: 15%; font-weight: bold; font-family: Tahoma
+}
+.line0 {
+    width: 80%; margin-left: 10%;
+}
+.contenedor {
+    margin-left: 10%; width: 20%;
+}
+.entrada {
+    background-color: #EFEF91;
+}
+.but0{
+    border-radius: 5px; background-color: black; color: white; font-weight: bold; font-family: Tahoma;
+}
+
