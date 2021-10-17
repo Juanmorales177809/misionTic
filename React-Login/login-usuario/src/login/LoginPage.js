@@ -11,14 +11,9 @@ function LoginPage() {
     /*El div equivale a l body de html */
     return (
         <Fragment>
-
             
             <NavbarComponent></NavbarComponent>
-            <SectionComponent></SectionComponent>
-            
-
-
-
+            <SectionComponent></SectionComponent>         
 
         </Fragment>
     );

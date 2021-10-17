@@ -5,11 +5,6 @@
     font-family: Tahoma Bold;
 }
 
-body{
-       
-      /*background-image: url('Login.jpg');*/
-}
-
 .menu ul {
     list-style-type: none;
     margin: 0px;
@@ -42,8 +37,6 @@ body{
     
   }
   
-  
-
 .linea {
     border-top: 3px solid black;
     height: 5px;
