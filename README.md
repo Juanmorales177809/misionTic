@@ -1,48 +1,70 @@
-# misionTic
-Ciclo 3
+# Getting Started with Create React App
 
-Juan Carlos Morales Guerra ;     email:	mutaharmorales@gmail.com
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Juan José Basante Navarro ;      email:	juanoser1997@gmail.com
+## Available Scripts
 
-David Andrés Barón Espitia ;     email:	dabaron776@gmail.com
+In the project directory, you can run:
 
-Sebastián Camilo Cogario Ramos ;	email:  cogario0901@gmail.com
+### `npm start`
 
-Jessica Astrid Mayorga Barrera ; email:	jessicamayorgab@gmail.com
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Planteamiento de la situación problema a desarrollar 
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Se  propone  analizar,  diseñar  y  construir  una  aplicación  de  software  que  permita realizar el seguimiento de las ventas de un producto y/o servicio en una empresa (cada  equipo  podrá  acordar  con  el  tutor  el  tipo  de  productos  y/o  servicios  que vende la empresa) y hacerles el correspondiente seguimiento.
+### `npm test`
 
-3. ¿Qué debo alcanzar para desarrollar la aplicación web?
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Realizar el seguimiento de las ventas requiere la construcción de unas interfaces de usuario que permitan: el ingreso a la aplicación, registro de productos, maestro 
-de productos, registro de venta, maestro de las ventas y maestro de usuarios.
-Para que puedas desarrollar el proyecto que se te planteó, la aplicación web debe contar con los siguientes módulos: 
+### `npm run build`
 
-• Gestión de ingreso al sistema de información. El sistema tendrá una interfaz gráfica para el ingreso a la aplicación (registro e inicio de sesión), la autorización 
-   de ingreso a la aplicación estaría a cargo de un tercero (Gmail) mediante “Oauth 2”; todos los usuarios que se registran entran en estado pendiente.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-• Módulo administrador de productos. El sistema tendrá una interfaz gráfica para el registro de productos y otra para listar, buscar y actualizar productos, 
-   cada uno debe contar con los siguientes atributos: Identificador único (Inmutable), descripción, valor unitario y estado (disponible, no disponible).
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-• Módulo administrador de ventas. El sistema tendrá una interfaz gráfica para el registro de las ventas y otra para listar, buscar y actualizar las ventas realizadas (Actualizar se refiere a establecer los diferentes estados de la venta: En proceso, cancelada o entregada, o editar alguno de sus otros campos modificables). Cada venta debe contar con los siguientes atributos: Identificador único de venta (Inmutable), el valor total de la venta, identificador, cantidad y precio unitario de cada producto, fecha de venta, el documento de identificación y nombre del cliente, y, además, deberá contar con un encargado de gestionar dicha venta (vendedor).
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-• Gestión de usuarios. Permite ver y actualizar el rol (administrador y vendedor) y el estado del usuario (pendiente/autorizado/no autorizado)
-        Precisiones. 
+### `npm run eject`
 
-1. Se requiere que el proyecto cumpla con las historias de usuario presentadas en este documento, pero se da libertad para que el equipo de desarrollo 
-        pueda acordar con el tutor cualquier funcionalidad adicional.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-2. No se requiere módulo de inventario, clientes o uno diferente a los que se presenta anteriormente. 
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-3. No se requiere contemplar impuestos o valores adicionales en la venta.
+## Learn More
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-4. La palabra usuario es usada en el contexto del proyecto como una persona cualquiera que se registra en su aplicativo web, esta puede ser alguien que no 
-  tiene relación con la empresa, por lo que por defecto el usuario tiene estado pendiente y no tiene rol, dicha persona solo podrá ingresar a la aplicación 
-  exitosamente cuando el administrador le cambie el estado a autorizado y le asigne un rol. El administrador tiene acceso total a la aplicación, mientras que 
-  el vendedor únicamente a las interfaces de usuario correspondientes a la de registro y maestro de ventas. 
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
