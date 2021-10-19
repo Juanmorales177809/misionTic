@@ -1,38 +1,66 @@
-.linea {
-    margin: 0%;
+.te{
+    margin-left: 1%;
+    font-family: Tahoma;
+    margin-top: 5%;
+    font-size: x-large;
+    font-weight: bold;
 }
-.linea2{
-    width: 80%; margin-left: 10%;border: 10px lightgray;border-radius: 10px;
-}
-.texto{
-    font-size: x-large; 
-    font-weight: bold; 
-    margin-top: 5%; 
-    margin-left: 10px;
+.te0{
+    margin-left: 11.2%;
+    font-family: Tahoma;
 
 }
-.texto0{
-    color:lightgrey;font-family: Tahoma;text-decoration:none;margin-left: 87%;
+.lin{
+   margin-left: 10%;
+   width: 80%;
+
 }
-.texto2{
-font-size: large; 
-font-weight: bold; 
-margin-top: 100px; 
-margin-left: 10%;
+.recuadro{
+    margin-left: 10%; 
+    margin-top: 3%; 
+    width: 37%; 
+    height: 50%; 
+    border: 3px solid lightgrey;
+    padding-top: 1%; 
+    width: 80%; 
+    border-radius: 10px;
 }
-.buto {
-    width: 15%; font-weight: bold; font-family: Tahoma
+.combo{
+    color: black;
+     background-color: white
 }
-.line0 {
-    width: 80%; margin-left: 10%;
-}
-.contenedor {
-    margin-left: 10%; width: 20%;
-}
-.entrada {
+.intu{
     background-color: #EFEF91;
+    margin-right: 30%; 
+    
 }
-.but0{
-    border-radius: 5px; background-color: black; color: white; font-weight: bold; font-family: Tahoma;
+.dty{
+    margin-left: -62%;
+    width: 10px;
+    margin-top: -0.75%;
 }
 
+
+.drp{
+    margin-left : 1%;
+    margin-right: -60%;
+}
+.valor{
+    font-family: Tahoma;
+     margin-left: 1.3%;
+     margin-right: 2.5%;
+}
+.pesos{
+    background-color: #EFEF91; 
+    width: 40%
+}
+.radi{
+    font-family: Tahoma; 
+    margin-left: 22%; 
+    margin-top: 30px
+}
+.bu2{
+    margin-left: 40%;
+    width: 300px;
+    margin-top: 5%;
+}
