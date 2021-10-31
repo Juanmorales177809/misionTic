@@ -11,6 +11,63 @@ function HomePage() {
     const [services, setServices] = useState([]);
     const [validUser, setValidUser] = useState(false);
     const { user, isAuthenticated } = useAuth0();
+   
+   
+    const addUser = async (name,role,email,autorizado) => {
+        const productData = {
+            
+            name: name,
+            role: role,
+            email: email,
+           autorizado: autorizado,
+        }
+        const response = await fetch(`http://localhost:3001/add-users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        });
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      }
+
+      const userExist = async (logUserEmail) => {
+        let exist=false;
+        try {
+          const response = await fetch("http://localhost:3001/get-users");
+          const jsonResponse = await response.json();
+          const responseServices = jsonResponse.data;
+
+            responseServices.map((user) => {
+           if(user.email  == logUserEmail) {
+               
+            exist=true;
+           }
+    
+          });
+         
+        
+        } catch (error) {
+          console.log(error);
+        }
+            console.log(exist);
+    
+        return exist;
+      };
+   
+    if( isAuthenticated == true){
+    console.log(user.email)
+    // addUser(user.name,"Admin",user.email,"Si")
+  let exist=userExist(user.email)
+  console.log(exist)
+
+   }
+
+
+   
+  
+  
 
     const getService = async () => {
         try {
@@ -72,7 +129,7 @@ function HomePage() {
     return (
         <Fragment>
 
-            <hr class="linea"></hr>
+                <hr class="linea"></hr>
 
             <h2 class="te">BIENVENIDO A MOTOSERVICE</h2>
             <div className="row">

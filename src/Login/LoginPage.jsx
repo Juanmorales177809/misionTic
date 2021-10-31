@@ -1,10 +1,14 @@
 import React, { Fragment } from "react";
 import './LoginStyles.css'
 import NavbarComponents from "../shared/components/navbar/NavbarComponents";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 function LoginPage() {
+
+  
+    
 
     return (
         <Fragment>
