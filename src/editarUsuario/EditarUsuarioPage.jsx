@@ -1,6 +1,7 @@
-import React, { Component, Fragment, useState, useEffect,  } from "react";
+import React, { Component, Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./EditarusuarioStyles.css";
+
 
 import Form from "react-bootstrap/Form";
 import { ElementContext } from "../context/elementContext";
@@ -15,49 +16,77 @@ function EditarUsuarioPage() {
   const [role, setRole] = useState([]);
   const [email, setEmail] = useState([]);
   const [autorizado, setAutorizado] = useState([]);
+  const [search, setSearch] = useState([]);
   function setRole1(value) {
-   setRole(value.target.value);
+    setRole(value.target.value);
   }
   function setName1(value) {
     setName(value.target.value);
-    
   }
 
-  function setAutorizado1(value,id) {
-    let value1=value.target.value;
+  // const styles = StyleSheet.create({
+  //   searchButton: {
+  //     background: 'green'
+  //   },
+  //   warning: {
+  //     background: 'yellow'
+  //   },
+  //   button: {
+  //     padding: '1em'
+  //   },
+  //   // media queries
+  //   '@media (max-width: 200px)': {
+  //     button: {
+  //       width: '100%'
+  //     }
+  //   }
+  // });
+ 
 
-    if(value1 =="Autorizado"){
-        value1="Si";
 
-      }
-      else{
-        value1="No";
-      }
-    uppdatePermission(id,value1)
+
+  function setAutorizado1(value, id) {
+    let value1 = value.target.value;
+
+    if (value1 == "Autorizado") {
+      value1 = "Si";
+    } else {
+      value1 = "No";
+    }
+    uppdatePermission(id, value1);
   }
-  function setRole1 (value,id) {
-      
+  function setRole1(value, id) {
     setRole(value.target.value);
-    console.log(value.target.value)
-    console.log(id)
-    uppdateRole(id,value.target.value)
-  
+    console.log(value.target.value);
+    console.log(id);
+    uppdateRole(id, value.target.value);
   }
-
+  function deleteElement(value, id) {
+    deleteUser(id);
+    console.log(value.target.value);
+    console.log(id);
+  }
 
   const getUsers = async () => {
+    
     try {
       const response = await fetch("http://localhost:3001/get-users");
       const jsonResponse = await response.json();
       const responseServices = jsonResponse.data;
 
-      const usersList = responseServices.map((user) => (
+      const usersList = responseServices.map((user) => { if (search == user.idUsuario) {return (
+        
         <tr>
           <th scope="row">{user.idUsuario}</th>
           {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
           <td>{user.name}</td>
           <td>
-            <Form.Select aria-label="Default select example" onChange={(e,id)=>{setRole1(e,user.idUsuario)}}  >
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e, id) => {
+                setRole1(e, user.idUsuario);
+              }}
+            >
               <option>Elija un Rol...</option>
               <option value="Admin">Administrador</option>
               <option value="Vendedor">Vendedor</option>
@@ -66,7 +95,9 @@ function EditarUsuarioPage() {
           <td>
             <Form.Select
               aria-label="Default select example"
-              onChange={(e,id)=>{setAutorizado1(e,user.idUsuario)}}
+              onChange={(e, id) => {
+                setAutorizado1(e, user.idUsuario);
+              }}
             >
               <option value="No Autorizado"> Pendiente...</option>
               <option value="Autorizado">Autorizado</option>
@@ -74,111 +105,265 @@ function EditarUsuarioPage() {
             </Form.Select>
           </td>
           <td>{user.email}</td>
+
+          <td>
+            {" "}
+            <button
+              className="btn btn-dark"
+              onClick={(e, id) => {
+                deleteElement(e, user.idUsuario);
+              }}
+            >
+              {" "}
+              Borrar{" "}
+            </button>
+          </td>
         </tr>
+      )}
+      if (search == "") {return (
+        
+        <tr>
+          <th scope="row">{user.idUsuario}</th>
+          {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+          <td>{user.name}</td>
+          <td>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e, id) => {
+                setRole1(e, user.idUsuario);
+              }}
+            >
+              <option>Elija un Rol...</option>
+              <option value="Admin">Administrador</option>
+              <option value="Vendedor">Vendedor</option>
+            </Form.Select>
+          </td>
+          <td>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e, id) => {
+                setAutorizado1(e, user.idUsuario);
+              }}
+            >
+              <option value="No Autorizado"> Pendiente...</option>
+              <option value="Autorizado">Autorizado</option>
+              <option value="No Autorizado">No Autorizado</option>
+            </Form.Select>
+          </td>
+          <td>{user.email}</td>
+
+          <td>
+            {" "}
+            <button
+              className="btn btn-dark"
+              onClick={(e, id) => {
+                deleteElement(e, user.idUsuario);
+              }}
+            >
+              {" "}
+              Borrar{" "}
+            </button>
+          </td>
+        </tr>
+      )}
 
 
-      ));
-      setServices(usersList);
+      if (search !== "user.idUsuario") {
+       
+        return (
+        
+        <p></p>
+        
+        
+      )}
     
+    
+    
+    
+    });
+      setServices(usersList);
+      console.log(search)
     } catch (error) {
       console.log(error);
     }
   };
 
+  // const onBuscar = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:3001/get-users");
+  //     const jsonResponse = await response.json();
+  //     const responseServices = jsonResponse.data;
 
+  //     const usersList = responseServices.map((user) => (
+  //       <tr>
+  //         <th scope="row">{user.idUsuario}</th>
+  //         {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+  //         <td>{user.name}</td>
+  //         <td>
+  //           <Form.Select
+  //             aria-label="Default select example"
+  //             onChange={(e, id) => {
+  //               setRole1(e, user.idUsuario);
+  //             }}
+  //           >
+  //             <option>Elija un Rol...</option>
+  //             <option value="Admin">Administrador</option>
+  //             <option value="Vendedor">Vendedor</option>
+  //           </Form.Select>
+  //         </td>
+  //         <td>
+  //           <Form.Select
+  //             aria-label="Default select example"
+  //             onChange={(e, id) => {
+  //               setAutorizado1(e, user.idUsuario);
+  //             }}
+  //           >
+  //             <option value="No Autorizado"> Pendiente...</option>
+  //             <option value="Autorizado">Autorizado</option>
+  //             <option value="No Autorizado">No Autorizado</option>
+  //           </Form.Select>
+  //         </td>
+  //         <td>{user.email}</td>
 
+  //         <td>
+  //           {" "}
+  //           <button
+  //             className="btn btn-dark"
+  //             onClick={(e, id) => {
+  //               deleteElement(e, user.idUsuario);
+  //             }}
+  //           >
+  //             {" "}
+  //             Borrar{" "}
+  //           </button>
+  //         </td>
+  //       </tr>
+  //     ));
+  //     setServices(usersList);
+  //     console.log(search)
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-const uppdateRole = async (id,rolValue) => {
-  
-      const productData = {
-        idUsuario : id,
-        role: rolValue,
-       
-    }
-   
-   const response = await fetch(`http://localhost:3001/update-user-role`, {
-        method: 'PUT',
-         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productData)
+  const uppdateRole = async (id, rolValue) => {
+    const productData = {
+      idUsuario: id,
+      role: rolValue,
+    };
+
+    const response = await fetch(`http://localhost:3001/update-user-role`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
     });
     const jsonResponse = await response.json();
     console.log(jsonResponse);
-    
-    console.log(name);
+  };
 
-  }
+  const deleteUser = async (id) => {
+    const productData = {
+      idUsuario: id,
+    };
 
-const uppdatePermission = async (id,permissionValue) => {
-  
-      const productData = {
-        idUsuario : id,
-        autorizado:permissionValue,
-       
-    }
-   
-   const response = await fetch(`http://localhost:3001/update-user-Permissions`, {
-        method: 'PUT',
-         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productData)
+    const response = await fetch(`http://localhost:3001/delete-user`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
     });
     const jsonResponse = await response.json();
     console.log(jsonResponse);
-    
- 
+  };
 
-  }
+  const uppdatePermission = async (id, permissionValue) => {
+    const productData = {
+      idUsuario: id,
+      autorizado: permissionValue,
+    };
+
+    const response = await fetch(
+      `http://localhost:3001/update-user-Permissions`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      }
+    );
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+  };
 
   // update TOTAL
-// const addProduct = async () => {
-  
-//       const productData = {
-//         idUsuario : 1,
-//         name: "Juan",
-//         role: "admin",
-//         email: "paula@gmail.com",
-//        autorizado: "0",
-//     }
-   
-//    const response = await fetch(`http://localhost:3001/update-user`, {
-//         method: 'PUT',
-//          headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(productData)
-//     });
-//     const jsonResponse = await response.json();
-//     console.log(jsonResponse);
-    
-//     console.log(name);
+  // const addProduct = async () => {
 
-//   }
+  //       const productData = {
+  //         idUsuario : 1,
+  //         name: "Juan",
+  //         role: "admin",
+  //         email: "paula@gmail.com",
+  //        autorizado: "0",
+  //     }
 
+  //    const response = await fetch(`http://localhost:3001/update-user`, {
+  //         method: 'PUT',
+  //          headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify(productData)
+  //     });
+  //     const jsonResponse = await response.json();
+  //     console.log(jsonResponse);
 
+  //     console.log(name);
 
-useEffect(() => {
+  //   }
+
+  useEffect(() => {
     getUsers();
-}, )
-  
+  });
 
   return (
     <ElementContext.Consumer>
       {(context) => {
         const { changeBoxValue, active2, active1, active0 } = context;
-       
-      
+
         return (
           <Fragment>
             <h2 className="te">GESTIÓN DE USUARIOS</h2>
             <div className="row">
               <div className="col ">
-                <a className="texti0 te0">Acceso Autorizado</a>
+                <a className="texti0 te0">Acceso Autorizado </a>
               </div>
             </div>
             <hr className="lin"></hr>
+
+
+            <div className="input-group "  style={{  width:"25%" ,marginLeft:"10%" }}>
+              <input
+                type="search"
+                className="form-control rounded"
+                placeholder="# Usuario"
+                aria-label="Search"
+                aria-describedby="search-addon"
+                style={{ background: "#EFEF91"}}
+               onChangeCapture ={(e) => {
+                setSearch(e.target.value);
+                }}
+              />
+              
+              &nbsp;&nbsp;&nbsp;
+              <button type="button" className="btn btn-dark">
+                Buscar
+              </button>
+
+          
+            </div>
 
             <table className="table row1">
               <thead className="table-dark ">
@@ -188,20 +373,19 @@ useEffect(() => {
                   <th scope="col">Rol</th>
                   <th scope="col">Permisos</th>
                   <th scope="col">email</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody>
-               
-                {users}
-              </tbody>
+              <tbody>{users}</tbody>
             </table>
+
+            
 
             <button
               type="button"
               className="btn btn-primary but2"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
-             
             >
               {" "}
               Guardar
@@ -243,7 +427,6 @@ useEffect(() => {
                       type="button"
                       className="btn btn-primary"
                       data-bs-dismiss="modal"
-                    
                     >
                       {" "}
                       <Link
