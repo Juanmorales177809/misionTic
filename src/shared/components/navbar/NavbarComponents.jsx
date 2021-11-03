@@ -47,10 +47,10 @@ function NavbarComponents() {
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <li><button class="dropdown-item navv" type="button" onClick={() => loginWithRedirect()}>{isAuthenticated ? user.nickname : "login"}</button></li>
             
-              {isAuthenticated ? <li> <button class="dropdown-item navv" type="button" onClick={() => logout({ returnTo: window.location.origin })}>Sign out</button>
+              {isAuthenticated ? <li> <button class="dropdown-item navv" type="button" onClick={() => logout({returnTo: window.location.origin })}>Sign out</button>
 
               </li> : null}
-            <li><button class="dropdown-item navv" type="button">{isAuthenticated ? user.email : "Usuario"}</button></li>
+            
           </ul>
         </div>
       </div>
