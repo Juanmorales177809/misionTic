@@ -17,6 +17,8 @@ function EditarUsuarioPage() {
   const [email, setEmail] = useState([]);
   const [autorizado, setAutorizado] = useState([]);
   const [search, setSearch] = useState([]);
+  const [buscar, setbuscar] = useState([]);
+
   function setRole1(value) {
     setRole(value.target.value);
   }
@@ -24,25 +26,12 @@ function EditarUsuarioPage() {
     setName(value.target.value);
   }
 
-  // const styles = StyleSheet.create({
-  //   searchButton: {
-  //     background: 'green'
-  //   },
-  //   warning: {
-  //     background: 'yellow'
-  //   },
-  //   button: {
-  //     padding: '1em'
-  //   },
-  //   // media queries
-  //   '@media (max-width: 200px)': {
-  //     button: {
-  //       width: '100%'
-  //     }
-  //   }
-  // });
- 
 
+  function onBuscar(){
+   
+    setbuscar(true);
+    
+  }
 
 
   function setAutorizado1(value, id) {
@@ -74,7 +63,7 @@ function EditarUsuarioPage() {
       const jsonResponse = await response.json();
       const responseServices = jsonResponse.data;
 
-      const usersList = responseServices.map((user) => { if (search == user.idUsuario) {return (
+      const usersList = responseServices.map((user) => { if(buscar==true){if (search == user.idUsuario) {return (
         
         <tr>
           <th scope="row">{user.idUsuario}</th>
@@ -120,7 +109,10 @@ function EditarUsuarioPage() {
           </td>
         </tr>
       )}
-      if (search == "") {return (
+
+      if (search == "") {
+        setbuscar(false);
+        return (
         
         <tr>
           <th scope="row">{user.idUsuario}</th>
@@ -165,10 +157,14 @@ function EditarUsuarioPage() {
             </button>
           </td>
         </tr>
-      )}
+        
+      )
+      
+    }
 
 
       if (search !== "user.idUsuario") {
+       
        
         return (
         
@@ -178,9 +174,63 @@ function EditarUsuarioPage() {
       )}
     
     
+      
     
+    }
+
+    else{
+    return ( <tr>
+          <th scope="row">{user.idUsuario}</th>
+          {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+          <td>{user.name}</td>
+          <td>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e, id) => {
+                setRole1(e, user.idUsuario);
+              }}
+            >
+              <option>Elija un Rol...</option>
+              <option value="Admin">Administrador</option>
+              <option value="Vendedor">Vendedor</option>
+            </Form.Select>
+          </td>
+          <td>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e, id) => {
+                setAutorizado1(e, user.idUsuario);
+              }}
+            >
+              <option value="No Autorizado"> Pendiente...</option>
+              <option value="Autorizado">Autorizado</option>
+              <option value="No Autorizado">No Autorizado</option>
+            </Form.Select>
+          </td>
+          <td>{user.email}</td>
+
+          <td>
+            {" "}
+            <button
+              className="btn btn-dark"
+              onClick={(e, id) => {
+                deleteElement(e, user.idUsuario);
+              }}
+            >
+              {" "}
+              Borrar{" "}
+            </button>
+          </td>
+        </tr>)
+
+
+    }
+  
+  
+  }
     
-    });
+    );
+    
       setServices(usersList);
       console.log(search)
     } catch (error) {
@@ -188,63 +238,6 @@ function EditarUsuarioPage() {
     }
   };
 
-  // const onBuscar = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:3001/get-users");
-  //     const jsonResponse = await response.json();
-  //     const responseServices = jsonResponse.data;
-
-  //     const usersList = responseServices.map((user) => (
-  //       <tr>
-  //         <th scope="row">{user.idUsuario}</th>
-  //         {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
-  //         <td>{user.name}</td>
-  //         <td>
-  //           <Form.Select
-  //             aria-label="Default select example"
-  //             onChange={(e, id) => {
-  //               setRole1(e, user.idUsuario);
-  //             }}
-  //           >
-  //             <option>Elija un Rol...</option>
-  //             <option value="Admin">Administrador</option>
-  //             <option value="Vendedor">Vendedor</option>
-  //           </Form.Select>
-  //         </td>
-  //         <td>
-  //           <Form.Select
-  //             aria-label="Default select example"
-  //             onChange={(e, id) => {
-  //               setAutorizado1(e, user.idUsuario);
-  //             }}
-  //           >
-  //             <option value="No Autorizado"> Pendiente...</option>
-  //             <option value="Autorizado">Autorizado</option>
-  //             <option value="No Autorizado">No Autorizado</option>
-  //           </Form.Select>
-  //         </td>
-  //         <td>{user.email}</td>
-
-  //         <td>
-  //           {" "}
-  //           <button
-  //             className="btn btn-dark"
-  //             onClick={(e, id) => {
-  //               deleteElement(e, user.idUsuario);
-  //             }}
-  //           >
-  //             {" "}
-  //             Borrar{" "}
-  //           </button>
-  //         </td>
-  //       </tr>
-  //     ));
-  //     setServices(usersList);
-  //     console.log(search)
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const uppdateRole = async (id, rolValue) => {
     const productData = {
@@ -358,7 +351,7 @@ function EditarUsuarioPage() {
               />
               
               &nbsp;&nbsp;&nbsp;
-              <button type="button" className="btn btn-dark">
+              <button type="button" className="btn btn-dark" onClick={onBuscar}>
                 Buscar
               </button>
 
