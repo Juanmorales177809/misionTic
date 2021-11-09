@@ -24,7 +24,7 @@ function Eliminar() {
         body: JSON.stringify(productData),
     });
     handleClose();
-    window.location.href = '/ge'
+    window.location.href = '/ges-ventas'
 };
 
 
