@@ -42,12 +42,17 @@ function App() {
         <Route path="/ges-usuarios" exact>
           <GesUsuariosPage />
         </Route>
+    
         <Route path="/ges-ventas" exact>
           <GesVentasPage />
         </Route>
         <Route path="/reg-ventas" exact>
           <RegVentasPage />
         </Route>
+        <Route path="/edit-venta">
+          <EditarVentaPage />
+    
+    
         <Route path="/reg-service" exact>
           <RegServicePage />
         </Route>
