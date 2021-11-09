@@ -1,7 +1,7 @@
 import { Row, Container, Col, Form, Button, } from 'react-bootstrap';
 import React, { useState } from 'react';
 
-function Editar() {
+function EditarVentaPage() {
 
     
     let searching = localStorage.getItem('searching')
@@ -41,7 +41,7 @@ function Editar() {
             body: JSON.stringify(productData),
         });
         console.log(productData);
-        window.location.href = '/ge'
+        window.location.href = '/ges-ventas'
     };
 
     return (
@@ -165,4 +165,4 @@ function Editar() {
     )
 }
 
-export default Editar
+export default EditarVentaPage
