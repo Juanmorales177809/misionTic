@@ -14,6 +14,7 @@ import RegistrarProducto from "./regVenta/RegVentasPage.jsx";
 import RegVentasPage from "./regVenta/RegVentasPage.jsx";
 import HomePage from "./home/HomePage.jsx";
 import ElementContextProvider from "./context/elementContext.js";
+import UpdateServicePage from "./updateService/UpdateServicePage.jsx";
 
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
         <Route path="/forbiden" exact>
           <ForbidenComponent />
 
+        </Route>
+        <Route path = "/update-service" exact>
+     <UpdateServicePage/>
         </Route>
 
 

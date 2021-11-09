@@ -7,9 +7,6 @@ import Form from "react-bootstrap/Form";
 import { ElementContext } from "../context/elementContext";
 
 function EditarUsuarioPage() {
-  //  function  getRol(value){
-  //     console.log(value.target.value)
-  // }
 
   const [users, setServices] = useState([]);
   const [name, setName] = useState([]);
@@ -17,6 +14,8 @@ function EditarUsuarioPage() {
   const [email, setEmail] = useState([]);
   const [autorizado, setAutorizado] = useState([]);
   const [search, setSearch] = useState([]);
+  const [buscar, setbuscar] = useState([]);
+
   function setRole1(value) {
     setRole(value.target.value);
   }
@@ -24,25 +23,12 @@ function EditarUsuarioPage() {
     setName(value.target.value);
   }
 
-  // const styles = StyleSheet.create({
-  //   searchButton: {
-  //     background: 'green'
-  //   },
-  //   warning: {
-  //     background: 'yellow'
-  //   },
-  //   button: {
-  //     padding: '1em'
-  //   },
-  //   // media queries
-  //   '@media (max-width: 200px)': {
-  //     button: {
-  //       width: '100%'
-  //     }
-  //   }
-  // });
- 
 
+  function onBuscar() {
+
+    setbuscar(true);
+
+  }
 
 
   function setAutorizado1(value, id) {
@@ -68,119 +54,184 @@ function EditarUsuarioPage() {
   }
 
   const getUsers = async () => {
-    
+
     try {
       const response = await fetch("http://localhost:3001/get-users");
       const jsonResponse = await response.json();
       const responseServices = jsonResponse.data;
 
-      const usersList = responseServices.map((user) => { if (search == user.idUsuario) {return (
-        
-        <tr>
-          <th scope="row">{user.idUsuario}</th>
-          {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
-          <td>{user.name}</td>
-          <td>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e, id) => {
-                setRole1(e, user.idUsuario);
-              }}
-            >
-              <option>Elija un Rol...</option>
-              <option value="Admin">Administrador</option>
-              <option value="Vendedor">Vendedor</option>
-            </Form.Select>
-          </td>
-          <td>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e, id) => {
-                setAutorizado1(e, user.idUsuario);
-              }}
-            >
-              <option value="No Autorizado"> Pendiente...</option>
-              <option value="Autorizado">Autorizado</option>
-              <option value="No Autorizado">No Autorizado</option>
-            </Form.Select>
-          </td>
-          <td>{user.email}</td>
+      const usersList = responseServices.map((user) => {
+        if (buscar == true) {
+          if (search == user.idUsuario) {
+            return (
 
-          <td>
-            {" "}
-            <button
-              className="btn btn-dark"
-              onClick={(e, id) => {
-                deleteElement(e, user.idUsuario);
-              }}
-            >
+              <tr>
+                <th scope="row">{user.idUsuario}</th>
+                {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+                <td>{user.name}</td>
+                <td>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e, id) => {
+                      setRole1(e, user.idUsuario);
+                    }}
+                  >
+                    <option>Elija un Rol...</option>
+                    <option value="Admin">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
+                  </Form.Select>
+                </td>
+                <td>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e, id) => {
+                      setAutorizado1(e, user.idUsuario);
+                    }}
+                  >
+                    <option value="No Autorizado"> Pendiente...</option>
+                    <option value="Autorizado">Autorizado</option>
+                    <option value="No Autorizado">No Autorizado</option>
+                  </Form.Select>
+                </td>
+                <td>{user.email}</td>
+
+                <td>
+                  {" "}
+                  <button
+                    className="btn btn-dark"
+                    onClick={(e, id) => {
+                      deleteElement(e, user.idUsuario);
+                    }}
+                  >
+                    {" "}
+                    Borrar{" "}
+                  </button>
+                </td>
+              </tr>
+            )
+          }
+
+          if (search == "") {
+            setbuscar(false);
+            return (
+
+              <tr>
+                <th scope="row">{user.idUsuario}</th>
+                {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+                <td>{user.name}</td>
+                <td>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e, id) => {
+                      setRole1(e, user.idUsuario);
+                    }}
+                  >
+                    <option>Elija un Rol...</option>
+                    <option value="Admin">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
+                  </Form.Select>
+                </td>
+                <td>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e, id) => {
+                      setAutorizado1(e, user.idUsuario);
+                    }}
+                  >
+                    <option value="No Autorizado"> Pendiente...</option>
+                    <option value="Autorizado">Autorizado</option>
+                    <option value="No Autorizado">No Autorizado</option>
+                  </Form.Select>
+                </td>
+                <td>{user.email}</td>
+
+                <td>
+                  {" "}
+                  <button
+                    className="btn btn-dark"
+                    onClick={(e, id) => {
+                      deleteElement(e, user.idUsuario);
+                    }}
+                  >
+                    {" "}
+                    Borrar{" "}
+                  </button>
+                </td>
+              </tr>
+
+            )
+          }
+
+
+          if (search !== "user.idUsuario") {
+
+
+            return (
+
+              <p></p>
+
+
+            )
+          }
+
+
+
+
+        }
+
+        else {
+          return (<tr>
+            <th scope="row">{user.idUsuario}</th>
+            {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
+            <td>{user.name}</td>
+            <td>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e, id) => {
+                  setRole1(e, user.idUsuario);
+                }}
+              >
+                <option>Elija un Rol...</option>
+                <option value="Admin">Administrador</option>
+                <option value="Vendedor">Vendedor</option>
+              </Form.Select>
+            </td>
+            <td>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e, id) => {
+                  setAutorizado1(e, user.idUsuario);
+                }}
+              >
+                <option value="No Autorizado"> Pendiente...</option>
+                <option value="Autorizado">Autorizado</option>
+                <option value="No Autorizado">No Autorizado</option>
+              </Form.Select>
+            </td>
+            <td>{user.email}</td>
+
+            <td>
               {" "}
-              Borrar{" "}
-            </button>
-          </td>
-        </tr>
-      )}
-      if (search == "") {return (
-        
-        <tr>
-          <th scope="row">{user.idUsuario}</th>
-          {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
-          <td>{user.name}</td>
-          <td>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e, id) => {
-                setRole1(e, user.idUsuario);
-              }}
-            >
-              <option>Elija un Rol...</option>
-              <option value="Admin">Administrador</option>
-              <option value="Vendedor">Vendedor</option>
-            </Form.Select>
-          </td>
-          <td>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e, id) => {
-                setAutorizado1(e, user.idUsuario);
-              }}
-            >
-              <option value="No Autorizado"> Pendiente...</option>
-              <option value="Autorizado">Autorizado</option>
-              <option value="No Autorizado">No Autorizado</option>
-            </Form.Select>
-          </td>
-          <td>{user.email}</td>
-
-          <td>
-            {" "}
-            <button
-              className="btn btn-dark"
-              onClick={(e, id) => {
-                deleteElement(e, user.idUsuario);
-              }}
-            >
-              {" "}
-              Borrar{" "}
-            </button>
-          </td>
-        </tr>
-      )}
+              <button
+                className="btn btn-dark"
+                onClick={(e, id) => {
+                  deleteElement(e, user.idUsuario);
+                }}
+              >
+                {" "}
+                Borrar{" "}
+              </button>
+            </td>
+          </tr>)
 
 
-      if (search !== "user.idUsuario") {
-       
-        return (
-        
-        <p></p>
-        
-        
-      )}
-    
-    
-    
-    
-    });
+        }
+
+
+      }
+
+      );
+
       setServices(usersList);
       console.log(search)
     } catch (error) {
@@ -188,63 +239,6 @@ function EditarUsuarioPage() {
     }
   };
 
-  // const onBuscar = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:3001/get-users");
-  //     const jsonResponse = await response.json();
-  //     const responseServices = jsonResponse.data;
-
-  //     const usersList = responseServices.map((user) => (
-  //       <tr>
-  //         <th scope="row">{user.idUsuario}</th>
-  //         {/* <td><input type="text" placeholder={user.name} onChange={setName1}  /></td> */}
-  //         <td>{user.name}</td>
-  //         <td>
-  //           <Form.Select
-  //             aria-label="Default select example"
-  //             onChange={(e, id) => {
-  //               setRole1(e, user.idUsuario);
-  //             }}
-  //           >
-  //             <option>Elija un Rol...</option>
-  //             <option value="Admin">Administrador</option>
-  //             <option value="Vendedor">Vendedor</option>
-  //           </Form.Select>
-  //         </td>
-  //         <td>
-  //           <Form.Select
-  //             aria-label="Default select example"
-  //             onChange={(e, id) => {
-  //               setAutorizado1(e, user.idUsuario);
-  //             }}
-  //           >
-  //             <option value="No Autorizado"> Pendiente...</option>
-  //             <option value="Autorizado">Autorizado</option>
-  //             <option value="No Autorizado">No Autorizado</option>
-  //           </Form.Select>
-  //         </td>
-  //         <td>{user.email}</td>
-
-  //         <td>
-  //           {" "}
-  //           <button
-  //             className="btn btn-dark"
-  //             onClick={(e, id) => {
-  //               deleteElement(e, user.idUsuario);
-  //             }}
-  //           >
-  //             {" "}
-  //             Borrar{" "}
-  //           </button>
-  //         </td>
-  //       </tr>
-  //     ));
-  //     setServices(usersList);
-  //     console.log(search)
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const uppdateRole = async (id, rolValue) => {
     const productData = {
@@ -299,30 +293,6 @@ function EditarUsuarioPage() {
     console.log(jsonResponse);
   };
 
-  // update TOTAL
-  // const addProduct = async () => {
-
-  //       const productData = {
-  //         idUsuario : 1,
-  //         name: "Juan",
-  //         role: "admin",
-  //         email: "paula@gmail.com",
-  //        autorizado: "0",
-  //     }
-
-  //    const response = await fetch(`http://localhost:3001/update-user`, {
-  //         method: 'PUT',
-  //          headers: {
-  //             'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify(productData)
-  //     });
-  //     const jsonResponse = await response.json();
-  //     console.log(jsonResponse);
-
-  //     console.log(name);
-
-  //   }
 
   useEffect(() => {
     getUsers();
@@ -344,25 +314,25 @@ function EditarUsuarioPage() {
             <hr className="lin"></hr>
 
 
-            <div className="input-group "  style={{  width:"25%" ,marginLeft:"10%" }}>
+            <div className="input-group " style={{ width: "25%", marginLeft: "10%" }}>
               <input
                 type="search"
                 className="form-control rounded"
                 placeholder="# Usuario"
                 aria-label="Search"
                 aria-describedby="search-addon"
-                style={{ background: "#EFEF91"}}
-               onChangeCapture ={(e) => {
-                setSearch(e.target.value);
+                style={{ background: "#EFEF91" }}
+                onChangeCapture={(e) => {
+                  setSearch(e.target.value);
                 }}
               />
-              
+
               &nbsp;&nbsp;&nbsp;
-              <button type="button" className="btn btn-dark">
+              <button type="button" className="btn btn-dark" onClick={onBuscar}>
                 Buscar
               </button>
 
-          
+
             </div>
 
             <table className="table row1">
@@ -379,7 +349,7 @@ function EditarUsuarioPage() {
               <tbody>{users}</tbody>
             </table>
 
-            
+
 
             <button
               type="button"

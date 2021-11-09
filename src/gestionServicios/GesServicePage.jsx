@@ -5,6 +5,8 @@ import apiBaseUrl from "../shared/utils/Api";
 import ForbidenComponent from "../shared/components/fordiben/ForbidenComponent";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from 'react-router';
+import editar from "../assets/img/editar.png";
+
 
 
 
@@ -13,10 +15,25 @@ function GesServicePage() {
     const [services, setServices] = useState([]);
     const [validUser, setValidUser] = useState(false);
     const { user, isAuthenticated } = useAuth0();
+    const [Valor, setValor] = useState([]);
+
+
 
     function deleteElement(id) {
         deleteService(id);
         console.log(id);
+    }
+    function setValor1(value,id){
+        setValor(value.target.value);
+        console.log(value.target.value);
+        console.log(id);
+        uppdateValor(id, value.target.value);
+
+    }
+    function changeButton(){
+        const button = "Guardar"
+        return
+
     }
     const getService = async () => {
         try {
@@ -29,18 +46,10 @@ function GesServicePage() {
                     <td>{service.detalle}</td>
                     <td>{service.valor}</td>
                     <td>{service.estado}</td>
-                    <td>
-                        <div className="mb-3">
-                            {validUser == true ? <button type="button" class="btn btn-dark">Editar</button> : <ForbidenComponent/>}
-                        </div>
-                    </td>
-                    <div className="mb-3">
-                        <td>
-                            {validUser == true ?<button onClick={(id) => deleteElement(service.id)} type="button" class="btn btn-dark">{" "}
-                                Borrar{" "}</button> : <ForbidenComponent/>}
-                        </td>
-                    </div>
-                </tr>
+                    
+            
+                    </tr>  
+                 
             );
             setServices(listservices)
         }
@@ -49,6 +58,7 @@ function GesServicePage() {
         }
 
     }
+   
     const validateUserRole = async () => {
         const response = await fetch(`http://localhost:3001/get-user?email=${user.email}`);
         const jsonResponse = await response.json();
@@ -83,6 +93,7 @@ function GesServicePage() {
         const productData = {
             id: id,
         };
+        
 
         const response = await fetch(`http://localhost:3001/delete-service`, {
             method: "DELETE",
@@ -94,6 +105,23 @@ function GesServicePage() {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
     };
+    const uppdateValor = async (id, valor) => {
+        const productData = {
+          id: id,
+          valor: valor,
+          
+        };
+    
+        const response = await fetch(`http://localhost:3001/update-user-role`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        });
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      };
 
     useEffect(() => {
         grantAccess();
@@ -123,7 +151,7 @@ function GesServicePage() {
                 </div>
             </div>
             <div class="edit">
-                {validUser == true ? <a href="" >Editar</a> : <ForbidenComponent />}
+                {validUser == true ? <Link to ="/update-service"><a href="" >Editar</a></Link> : <ForbidenComponent />}
             </div>
 
 
@@ -134,7 +162,7 @@ function GesServicePage() {
                         <th scope="col">Servicio</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Acción</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
