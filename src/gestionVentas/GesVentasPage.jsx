@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 import Eliminar from './Eliminar';
 
 
-function GestionVentas() {
+function GesVentasPage () {
   const [ventas, setVentas] = useState([]);
   const [validUser, setValidUser] = useState(false);
   const { user, isAuthenticated } = useAuth0();
@@ -21,7 +21,7 @@ function GestionVentas() {
     }
 
     let ssclick = e => {
-        window.location.href = '/update-venta';
+        window.location.href = '/edit-venta';
         localStorage.setItem('searching', search);
         localStorage.getItem('searching');
 
@@ -133,7 +133,7 @@ function GestionVentas() {
                     <div className="row">
                         <div className="col">
 
-                            <Button variant="dark" onClick={event => window.location.href = '/reg-venta'} >  Registrar nueva venta +  </Button>
+                            <Button variant="dark" onClick={event => window.location.href = '/reg-ventas'} >  Registrar nueva venta +  </Button>
                         </div>
                     </div>
 
@@ -255,4 +255,4 @@ function GestionVentas() {
 }
 
 
-export default GestionVentas
+export default GesVentasPage 
