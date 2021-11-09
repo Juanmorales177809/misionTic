@@ -1,7 +1,7 @@
 import { Row, Container, Col, Form, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 
-function Registrar() {
+function RegVentasPage () {
 
 
     const [detalle, setDetalle] = useState('');
@@ -164,11 +164,11 @@ function Registrar() {
             <br /><br />
             <Container>
 
-                <Button onClick={event => window.location.href = '/ge'} variant="dark"> <Button variant="dark" onClick={postData}>Guardar </Button></Button>
+                <Button onClick={event => window.location.href = '/ges-ventas'} variant="dark"> <Button variant="dark" onClick={postData}>Guardar </Button></Button>
 
             </Container>
         </div >
     )
 }
 
-export default Registrar
+export default RegVentasPage 
