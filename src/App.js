@@ -11,10 +11,11 @@ import EditarUsuarioPage from "./editarUsuario/EditarUsuarioPage.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import ForbidenComponent from "./shared/components/fordiben/ForbidenComponent.jsx";
 import RegistrarProducto from "./regVenta/RegVentasPage.jsx";
-import RegVentasPage from "./regVenta/RegVentasPage.jsx";
+import RegVentasPage from "./gestionVentas/RegVentasPage.jsx";
 import HomePage from "./home/HomePage.jsx";
 import ElementContextProvider from "./context/elementContext.js";
 import UpdateServicePage from "./updateService/UpdateServicePage.jsx";
+import Editar from "./gestionVentas/Editar"
 
 
 function App() {
@@ -33,9 +34,6 @@ function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
         <Route path="/ges-service" exact>
           <GesServicePage />
         </Route>
@@ -50,7 +48,8 @@ function App() {
           <RegVentasPage />
         </Route>
         <Route path="/edit-venta">
-          <EditarVentaPage />
+          <Editar />
+          </Route>
     
     
         <Route path="/reg-service" exact>
