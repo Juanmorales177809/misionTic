@@ -14,8 +14,6 @@ function EditarUsuarioPage() {
   const [users, setServices] = useState([]);
   const [name, setName] = useState([]);
   const [role, setRole] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [autorizado, setAutorizado] = useState([]);
   const [search, setSearch] = useState([]);
   const [buscar, setbuscar] = useState([]);
 
