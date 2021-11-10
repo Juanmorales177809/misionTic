@@ -1,11 +1,13 @@
 import { Row, Container, Col, Form, Button, } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 function EditarVentaPage() {
 
-    
+
     let searching = localStorage.getItem('searching')
-    
+
 
     const [detalle, setDetalle] = useState('');
     const [cantidad, setCantidad] = useState(0);
@@ -15,9 +17,15 @@ function EditarVentaPage() {
     const [name, setName] = useState('');
     const [responsable, setResponsable] = useState('');
     const [estado, setEstado] = useState('');
+    const [ventas, setVentas] = useState([]);
+  const [validUser, setValidUser] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
+  const [search, setSearch] = useState(['']);
+  const [seleccion, setSeleccion] = useState([]);
+  
 
     const productData = {
-        id : `${searching}`,
+        id: `${searching}`,
         detalle: `${detalle}`,
         cantidad: cantidad,
         fechaVenta: `${fechaventa}`,
@@ -28,7 +36,72 @@ function EditarVentaPage() {
         estado: `${estado}`,
 
     }
+    const getVentas = async () => {
+        try {
+            const response = await fetch("http://localhost:3001/get-ventas");
+            const jsonResponse = await response.json();
+            const responseVentas = jsonResponse.data;
+            const listVentas = responseVentas.map((venta) =>
+                <tr key={venta.id.toString()}>
+                    <td>{venta.id}</td>
+                    <td>{venta.detalle}</td>
+                    <td>{venta.cantidad}</td>
+                    <td>{venta.fechaVenta}</td>
+                    <td>{venta.valor}</td>
+                    <td>{venta.documento}</td>
+                    <td>{venta.name}</td>
+                    <td>{venta.Responsable}</td>
+                    <td>{venta.estado}</td>
+                </tr>
+            );
+            setVentas(listVentas)
+            setSeleccion(responseVentas)
+            
+        }
 
+        catch (error) {
+            console.log(error)
+        }
+    }
+    const validateUserRole = async () => {
+        const response = await fetch(`http://localhost:3001/get-user?email=${user.email}`);
+        const jsonResponse = await response.json();
+        return jsonResponse;
+    }
+
+    const grantAccess = async () => {
+        let userData;
+        if (isAuthenticated) {
+            userData = await validateUserRole();
+        }
+        else {
+            setValidUser(false);
+            return;
+        }
+        if (userData) {
+            if (userData.role != 'Invited') {
+                setValidUser(true);
+                localStorage.setItem("state", true);
+                await getVentas();
+
+            }
+            else {
+                setValidUser(false);
+            }
+        }
+        else {
+            setValidUser(false);
+        }
+    }
+    useEffect(() => {
+        grantAccess();
+        getVentas();
+        console.log(ventas.fechaVenta)
+        
+        
+      }, [isAuthenticated, validUser]);
+
+   
     const putdata = () => {
 
 
@@ -51,11 +124,11 @@ function EditarVentaPage() {
                 <Row>
                     <Col>
                         <Container fluid>
-                            <Form.Label style={{ fontWeight: 'bold' }}>
+                            <Form.Label  style={{ fontWeight: 'bold' }}>
                                 Fecha
                             </Form.Label>
                             <Row>
-                                <Form.Control type="date" name='date' onChange={(e) => setFechaVenta(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
+                                <Form.Control defaultValue ={ventas.fechaVenta} type="date" name='date' onChange={(e) => setFechaVenta(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
                             </Row >
                         </Container>
                     </Col>
@@ -66,7 +139,7 @@ function EditarVentaPage() {
                                 Documento Cliente
                             </Form.Label>
 
-                            <Form.Control type="number" placeholder="Ingrese # documento Cliente" onChange={(e) => setDocumento(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
+                            <Form.Control defaultValue ={ventas.name}type="number" placeholder="Ingrese # documento Cliente" onChange={(e) => setDocumento(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
 
                         </Form.Group>
 
@@ -159,7 +232,7 @@ function EditarVentaPage() {
             <br /> <br />
             <Container>
 
-            <Button variant='dark' onClick={putdata}> Actualizar</Button>
+                <Button variant='dark' onClick={putdata}> Actualizar</Button>
             </Container>
         </div>
     )
