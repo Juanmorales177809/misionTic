@@ -143,12 +143,12 @@ function GesServicePage() {
             </div>
             <hr class="linea line0"></hr>
             <div class="row row0">
-                <div class="col">
+                {/* <div class="col">
                     {validUser == true ? <input type="text" class="form-control inpu" placeholder="# Servicio" aria-label="Search" /> : <ForbidenComponent />}
                 </div>
                 <div class="col">
                     {validUser == true ? <button type="button" class="btn btn-dark but1">Buscar</button> : <ForbidenComponent />}
-                </div>
+                </div> */}
             </div>
             <div class="edit">
                 {validUser == true ? <Link to ="/update-service"><a href="" >Editar</a></Link> : <ForbidenComponent />}

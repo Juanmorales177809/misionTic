@@ -18,11 +18,10 @@ function EditarVentaPage() {
     const [responsable, setResponsable] = useState('');
     const [estado, setEstado] = useState('');
     const [ventas, setVentas] = useState([]);
-  const [validUser, setValidUser] = useState(false);
-  const { user, isAuthenticated } = useAuth0();
-  const [search, setSearch] = useState(['']);
-  const [seleccion, setSeleccion] = useState([]);
-  
+    const [validUser, setValidUser] = useState(false);
+    const { user, isAuthenticated } = useAuth0();
+    const [seleccion, setSeleccion] = useState([]);
+
 
     const productData = {
         id: `${searching}`,
@@ -41,28 +40,32 @@ function EditarVentaPage() {
             const response = await fetch("http://localhost:3001/get-ventas");
             const jsonResponse = await response.json();
             const responseVentas = jsonResponse.data;
-            const listVentas = responseVentas.map((venta) =>
-                <tr key={venta.id.toString()}>
-                    <td>{venta.id}</td>
-                    <td>{venta.detalle}</td>
-                    <td>{venta.cantidad}</td>
-                    <td>{venta.fechaVenta}</td>
-                    <td>{venta.valor}</td>
-                    <td>{venta.documento}</td>
-                    <td>{venta.name}</td>
-                    <td>{venta.Responsable}</td>
-                    <td>{venta.estado}</td>
-                </tr>
+            const listVentas = responseVentas.map((venta) => {
+                if (venta.id == searching) { return [venta.detalle, venta.name, venta.fechaVenta, venta.valor, venta.cantidad, venta.documento, venta.Responsable, venta.estado] }
+                else {
+                    return 0;
+                }
+            }
             );
             setVentas(listVentas)
+
             setSeleccion(responseVentas)
-            
+
         }
 
         catch (error) {
             console.log(error)
         }
     }
+    useEffect(() => {
+        grantAccess();
+        getVentas();
+
+
+
+
+    }, [isAuthenticated, validUser]);
+
     const validateUserRole = async () => {
         const response = await fetch(`http://localhost:3001/get-user?email=${user.email}`);
         const jsonResponse = await response.json();
@@ -93,15 +96,10 @@ function EditarVentaPage() {
             setValidUser(false);
         }
     }
-    useEffect(() => {
-        grantAccess();
-        getVentas();
-        console.log(ventas.fechaVenta)
-        
-        
-      }, [isAuthenticated, validUser]);
 
-   
+
+
+
     const putdata = () => {
 
 
@@ -124,11 +122,11 @@ function EditarVentaPage() {
                 <Row>
                     <Col>
                         <Container fluid>
-                            <Form.Label  style={{ fontWeight: 'bold' }}>
+                            <Form.Label style={{ fontWeight: 'bold' }}>
                                 Fecha
                             </Form.Label>
                             <Row>
-                                <Form.Control defaultValue ={ventas.fechaVenta} type="date" name='date' onChange={(e) => setFechaVenta(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
+                                <Form.Control type="date" name='date' onChange={(e) => setFechaVenta(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
                             </Row >
                         </Container>
                     </Col>
@@ -139,7 +137,7 @@ function EditarVentaPage() {
                                 Documento Cliente
                             </Form.Label>
 
-                            <Form.Control defaultValue ={ventas.name}type="number" placeholder="Ingrese # documento Cliente" onChange={(e) => setDocumento(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
+                            <Form.Control defaultValue={ventas[1]} type="number" placeholder="Ingrese # documento Cliente" onChange={(e) => setDocumento(e.target.value)} style={{ width: '300px', backgroundColor: '#EFEF91' }} style={{ width: '300px', backgroundColor: '#EFEF91' }} />
 
                         </Form.Group>
 

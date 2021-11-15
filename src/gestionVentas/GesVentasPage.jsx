@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 import Eliminar from './Eliminar';
 
 
+
 function GesVentasPage () {
   const [ventas, setVentas] = useState([]);
   const [validUser, setValidUser] = useState(false);
@@ -133,16 +134,16 @@ function GesVentasPage () {
                     <div className="row">
                         <div className="col">
 
-                            <Button variant="dark" onClick={event => window.location.href = '/reg-ventas'} >  Registrar nueva venta +  </Button>
+                            {validUser == true?<Button variant="dark" onClick={event => window.location.href = '/reg-ventas'} >  Registrar nueva venta +  </Button>: <ForbidenComponent/>}
                         </div>
                     </div>
 
                     <br />
 
                     <div>
-                        <Form className="d-flex"style={{paddingLeft: '15px' }} >
-                            <Row>
-                                <Form.Control style = {{backgroundColor:'#EFEF91'}} size="sm" type="text" placeholder="Order ID" onChangeCapture={(e) => {
+                    {validUser == true?<Form className="d-flex"style={{paddingLeft: '15px' }} >
+                        <Row>
+                        <Form.Control style = {{backgroundColor:'#EFEF91'}} size="sm" type="text" placeholder="Order ID" onChangeCapture={(e) => {
                                     setSearch(e.target.value);
 
                                 }} />
@@ -151,7 +152,7 @@ function GesVentasPage () {
 
 
                             </Row>
-                        </Form>
+                        </Form>:<ForbidenComponent/>}
                         <br />
 
                         <Table striped bordered hover >
@@ -199,7 +200,7 @@ function GesVentasPage () {
                     <div className="row">
                         <div className="col">
 
-                            <Button variant="dark" onClick={event => window.location.href = '/reg-venta'} >  Registrar nueva venta +  </Button>
+                            {validUser == true ?<Button variant="dark" onClick={event => window.location.href = '/reg-venta'} >  Registrar nueva venta +  </Button>: <ForbidenComponent/>}
                         </div>
                     </div>
 
